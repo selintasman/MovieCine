@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+body {
+    margin: 0;
+	padding: 0;	
+    font-family: Raleway, sans-serif;
+    text-decoration: none;
+    list-style-type: none;
+    outline: none;
+    background: linear-gradient(90deg, #C7C5F4, #776BCC);	
+}
+
+.movie-list {
+    width: 100%;
+    margin: 1cm auto;
+}
+
+.tv-list {
+    width: 100%;
+    margin: 1cm auto;
+}
+
+.grid {
+    display: grid;
+    margin-left: .5px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.2em;
+    justify-content: center;
+
+}
