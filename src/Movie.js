@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import {Modal, show} from 'react-bootstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import YouTube from 'react-youtube';
 
 
 const API_IMG = "https://image.tmdb.org/t/p/w300/";
 
 
-function Movie ({title, poster_path, vote_average, release_date, overview}) {
+function Movie ({title, poster_path, vote_average, release_date, overview, videos}) {
 
     const [show, setShow] = useState(false);
     
@@ -40,6 +41,7 @@ function Movie ({title, poster_path, vote_average, release_date, overview}) {
                   <br></br>
                   <h6>Overview</h6>
                   <p>{overview}</p>
+                  <p>{videos}</p>
                 </Modal.Body>
               </Modal>
               
