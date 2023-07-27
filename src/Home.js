@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import './Home.css';
 
-import Movie from './Movie';
+import Movie from './MovieCard';
 import Search from './Search';
 import TV from './TV';
 import 'bootstrap/dist/css/bootstrap.min.css';

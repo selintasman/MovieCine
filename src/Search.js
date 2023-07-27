@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import './Home.css';
 import {Form} from 'react-bootstrap';
-import Movie from './Movie';
+import Movie from './MovieCard';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
