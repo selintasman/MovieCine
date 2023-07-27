@@ -4,7 +4,7 @@ import './Home.css';
 
 import Movie from './MovieCard';
 import Search from './Search';
-import TV from './TV';
+import TV from './TVCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
