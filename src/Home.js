@@ -3,7 +3,7 @@ import './App.css';
 import './Home.css';
 
 import MovieCard from './MovieCard';
-import Movies from './Movies';
+
 import Search from './Search';
 import TV from './TVCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,7 +19,7 @@ const Home = () => {
   useEffect(() => {
 
     const fetchPopularMovies = async () => {
-      const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+      const API_URL = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&language=en-US&page=1`;
 
       let response = await fetch(API_URL, {
           method: 'GET',
@@ -36,7 +36,7 @@ const Home = () => {
 
     const fetchPopularTVShows = async () => {
       
-      const API_URL = `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=1`;
+      const API_URL = `https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}&language=en-US&page=1`;
 
       let response = await fetch(API_URL, {
         method: 'GET',
@@ -65,7 +65,7 @@ const Home = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="">MovieCine</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
          </button>
 
@@ -76,6 +76,18 @@ const Home = () => {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/movies">Movies</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Movies
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/movies">Popular Movies</a>
+                <a class="dropdown-item" href="#">Now Playing</a>
+                <a class="dropdown-item" href="#">Top Rated</a>
+                <a class="dropdown-item" href="#">Upcoming</a>
+                
+              </div>
             </li>
             
             
@@ -97,7 +109,7 @@ const Home = () => {
       <div className='search-area'>
         <Search/>
       </div>
-      <h2>Popular Movies</h2>
+      <h2>Trending Movies</h2>
       <div className='movie-list'>
         <div className='grid'>
         {popularMovies.map((movie) => <MovieCard 
@@ -112,7 +124,7 @@ const Home = () => {
         </div>
       </div>
 
-      <h2>Popular TV Shows</h2>
+      <h2>Trending TV Shows</h2>
       <div className='tv-list'>
         <div className='grid'>
         {popularTVShows.map((show) => <TV key={show.id} {...show}/>)};
