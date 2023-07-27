@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import './Home.css';
 
-import Movie from './MovieCard';
+import MovieCard from './MovieCard';
+import Movies from './Movies';
 import Search from './Search';
 import TV from './TVCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -62,6 +63,36 @@ const Home = () => {
 
   return (
     <div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="">MovieCine</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+         </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <a className="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/movies">Movies</a>
+            </li>
+            
+            
+          </ul>
+          <form className="form-inline my-2 my-lg-0">
+            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
+
+
+
+
+
+
       <h1>Welcome to Home Page</h1>
       <div className='search-area'>
         <Search/>
@@ -69,7 +100,7 @@ const Home = () => {
       <h2>Popular Movies</h2>
       <div className='movie-list'>
         <div className='grid'>
-        {popularMovies.map((movie) => <Movie 
+        {popularMovies.map((movie) => <MovieCard 
         key={movie.id}
         id={movie.id}
         title={movie.title}
