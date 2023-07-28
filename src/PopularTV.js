@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import './Home.css';
-import MovieCard from './MovieCard';
+
+import TV from './TVCard';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
 
-function PopularMovies () {
+function PopularTV () {
 
-    const [movies, setMovies] = useState([]);
+    const [shows, setShows] = useState([]);
 
     useEffect(() => {
 
         const popular = async () => {
-          const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
+          const API_URL = `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`;
     
           let response = await fetch(API_URL, {
               method: 'GET',
@@ -25,7 +27,7 @@ function PopularMovies () {
         
           let data = await response.json();
           console.log(data)
-          setMovies(data.results);
+          setShows(data.results);
         };
 
         popular();
@@ -41,22 +43,14 @@ function PopularMovies () {
 
     return (
         <div>
-            <h1>
-                <b>Popular Movies</b>
-            </h1>
+            <h2>
+                <b>Popular TV</b>
+            </h2>
 
                     
-            <div className='movie-list'>
+            <div className='tv-list'>
                 <div className='grid'>
-                {movies.map((movie) => <MovieCard 
-                key={movie.id}
-                id={movie.id}
-                title={movie.title}
-                poster_path={movie.poster_path}
-                vote_average={movie.vote_average}
-                release_date={movie.release_date}
-                overview={movie.overview}
-                /> )};
+                    {shows.map((show) => <TV key={show.id} {...show}/>)};
                 </div>
             </div>
 
@@ -70,4 +64,4 @@ function PopularMovies () {
     );
 }
 
-export default PopularMovies;
+export default PopularTV;

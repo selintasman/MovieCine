@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import './Home.css';
+
 import MovieCard from './MovieCard';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
 
-function PopularMovies () {
+function UpcomingMovies () {
 
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
 
-        const popular = async () => {
-          const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
+        const upcoming = async () => {
+          const API_URL = `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&region=US`;
     
           let response = await fetch(API_URL, {
               method: 'GET',
@@ -28,7 +30,7 @@ function PopularMovies () {
           setMovies(data.results);
         };
 
-        popular();
+        upcoming();
     
         
     
@@ -41,9 +43,9 @@ function PopularMovies () {
 
     return (
         <div>
-            <h1>
-                <b>Popular Movies</b>
-            </h1>
+            <h2>
+                <b>Upcoming</b>
+            </h2>
 
                     
             <div className='movie-list'>
@@ -70,4 +72,4 @@ function PopularMovies () {
     );
 }
 
-export default PopularMovies;
+export default UpcomingMovies;

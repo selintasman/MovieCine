@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import {Modal, show} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import YouTube from 'react-youtube';
+
 
 
 const API_IMG = "https://image.tmdb.org/t/p/w300/";
@@ -105,14 +105,7 @@ function Movie ({title, poster_path, vote_average, release_date, overview, id}) 
             </div>
 
           </div>
-          {/* <h1>{title}</h1>
-          <img className='card-img-top' src={`https://api.themoviedb.org/3/person/234352/images`+profile_path} alt={name}/>
-          <img 
-            src={API_IMG+poster_path}
-            alt={title} />
-            <p>{overview}</p>
-
-           */}
+          
         </div>
             
       );
