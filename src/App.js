@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login onLogin={handleLogin} />} />
           <Route path="/home" element={ isLoggedIn ? <Home /> :  <Navigate to="/" />} />
-          <Route path="/movies" element={<PopularMovies/>} />
+          <Route path="/popular" element={<PopularMovies/>} />
         </Routes>
       </BrowserRouter>
           

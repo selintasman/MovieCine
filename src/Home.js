@@ -74,15 +74,15 @@ const Home = () => {
             <li className="nav-item active">
               <a className="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/movies">Movies</a>
-            </li>
+            {/* <li className="nav-item">
+              <a className="nav-link" href="/popular">Movies</a>
+            </li> */}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Movies
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/movies">Popular Movies</a>
+                <a class="dropdown-item" href="/popular">Popular</a>
                 <a class="dropdown-item" href="#">Now Playing</a>
                 <a class="dropdown-item" href="#">Top Rated</a>
                 <a class="dropdown-item" href="#">Upcoming</a>
@@ -92,10 +92,10 @@ const Home = () => {
             
             
           </ul>
-          <form className="form-inline my-2 my-lg-0">
+          {/* <form className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          </form> */}
         </div>
       </nav>
 
