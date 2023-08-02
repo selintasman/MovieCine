@@ -12,21 +12,24 @@ import AiringToday from './AiringToday';
 import OnTheAir from './OnTheAir';
 import TopRatedTV from './TopRatedTV';
 import PopularTV from './PopularTV';
+import Watchlist from './Watchlist';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [sessionId, setSessionId] = useState(null);
   const handleLogin = () => {
     setIsLoggedIn(true);
+    
   };
   return (
    
       <BrowserRouter>
         {isLoggedIn && <NavBar/>}
         <Routes>
-          <Route path="/" element={<Login onLogin={handleLogin} />} />
-          <Route path="/home" element={ isLoggedIn ? <Home /> :  <Navigate to="/" />} />
+          <Route path="/" element={<Login   setSessionId={setSessionId} onLogin={handleLogin} />} />
+          <Route path="/home" element={ isLoggedIn ? <Home sessionId={sessionId}  /> :  <Navigate to="/" />} />
           <Route path="/popular" element={<PopularMovies/>} />
           <Route path="/nowplaying" element={<NowPlayingMovies/>} />
           <Route path="/movie/top-rated" element={<TopRatedMovies/>} />
@@ -35,6 +38,8 @@ function App() {
           <Route path="/tv/on-the-air" element={<OnTheAir/>} />
           <Route path="/tv/top-rated" element={<TopRatedTV/>} />
           <Route path="/tv/popular" element={<PopularTV/>} />
+          <Route path="/watchlist" element={<Watchlist/>} />
+          
 
         </Routes>
       </BrowserRouter>

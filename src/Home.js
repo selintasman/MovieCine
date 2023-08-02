@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
   
-const Home = () => {
+const Home = (sessionId) => {
 
   const [popularMovies, setPopularMovies] = useState([]);
   const [popularTVShows, setPopularTVShows] = useState([]);
@@ -59,9 +59,10 @@ const Home = () => {
   }, []);
 
   
-
+  console.log('SESSIONNNNN', sessionId);
 
   return (
+   
     <div>
       
 
@@ -86,6 +87,7 @@ const Home = () => {
         vote_average={movie.vote_average}
         release_date={movie.release_date}
         overview={movie.overview}
+        sessionId={sessionId}
         /> )};
         </div>
       </div>

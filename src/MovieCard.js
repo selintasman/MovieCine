@@ -6,17 +6,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
+
+
 const API_IMG = "https://image.tmdb.org/t/p/w300/";
 
 const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
 
 
-function Movie ({title, poster_path, vote_average, release_date, overview, id}) {
+function Movie ({title, poster_path, vote_average, release_date, overview, id, sessionId}) {
 
   console.log('Movie ID:', id);
+  console.log('SESSION IDDD:', sessionId);
 
     const [show, setShow] = useState(false);
     const [trailers, setTrailers] = useState([]);
+    const [isAddedToWatchlist, setIsAddedToWatchlist] = useState(false);
     
     const handlePreview = () => {
       setShow(true);
@@ -49,12 +53,52 @@ function Movie ({title, poster_path, vote_average, release_date, overview, id}) 
         }
   
       };
-  
+
      
       fetchTrailers();
+     
   
   
     }, [id]);
+
+
+   /*  const handleAddToWatchlist = () => {
+      addWatchlist();
+    } */
+
+
+    const handleAddToWatchlist = async (e) => {
+      e.preventDefault();
+      const WATCHLIST_URL = `https://api.themoviedb.org/3/account/20161831/watchlist?api_key=${API_KEY}&session_id=${sessionId.sessionId}`;
+
+      const requestBody = {
+        "media_type": "movie",
+        "media_id": id,
+        "watchlist": false,
+      };
+  
+
+
+      let response = await fetch(WATCHLIST_URL, {
+          method: 'POST',
+          body: JSON.stringify(requestBody),
+          headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMWE1YTllYjI1YzdkNzY4OGUyNTgzMTBkYTgwZWI1NSIsInN1YiI6IjY0YjUzYTdhMTIxOTdlMDBjNWY0OWUyOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.e8u4ycMy9_Q3PXP5QWXxeFsOY3lZBASrxoqWueIXjuY'
+          }
+      });
+      
+      if (response.ok) {
+          
+        console.log("successfull");
+        setIsAddedToWatchlist(true);
+
+      }
+      
+
+    };
+  
+       
 
 
 
@@ -85,7 +129,14 @@ function Movie ({title, poster_path, vote_average, release_date, overview, id}) 
                   <br></br>
                   <h6>Overview</h6>
                   <p>{overview}</p>
-
+                  <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleAddToWatchlist}
+                  disabled={isAddedToWatchlist}
+                >
+                  {isAddedToWatchlist ? 'Added to Watchlist' : 'Add to Watchlist'}
+                </button>
 
                   <div className="movie-trailers">
                     {trailers.map((trailer) => (

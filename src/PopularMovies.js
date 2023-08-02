@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import './Home.css';
 import MovieCard from './MovieCard';
+import Filter from './filter';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
@@ -45,6 +46,8 @@ function PopularMovies () {
                 <b>Popular Movies</b>
             </h1>
 
+           
+
                     
             <div className='movie-list'>
                 <div className='grid'>
@@ -58,6 +61,10 @@ function PopularMovies () {
                 overview={movie.overview}
                 /> )};
                 </div>
+
+                {/* <div>
+                <Filter movies={movies} />
+                </div> */}
             </div>
 
 

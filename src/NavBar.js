@@ -20,9 +20,8 @@ function NavBar () {
                 <Link className="nav-link" to="/home">Home</Link>
                 </li>
                 
-                {/* <li className="nav-item">
-                <a className="nav-link" href="/popular">Movies</a>
-                </li> */}
+                
+                
                 <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Movies
@@ -53,6 +52,10 @@ function NavBar () {
                     
                 </div>
                 </li>
+
+                <li className="nav-item">
+                <Link className="nav-link" to="/watchlist">My Watchlist</Link>
+                </li> 
                 
                 
             </ul>
