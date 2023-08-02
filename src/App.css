@@ -8,7 +8,21 @@
 .Home {
   background: white !important;
   color: black;
+}
+.form-group {
+	display: flex;
+	flex-direction: row;
 } 
+
+.btn-primary {
+	margin-left: 10px;
+}
+
+.trailer-item {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 10px;
+}
 
  @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 

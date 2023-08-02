@@ -35,14 +35,14 @@ function Search () {
     return (
         <div>
             <div className='search-area'>
-                <form onSubmit={searching}>
+                <form onSubmit={searching} className="form-group">
                 <Form.Control 
                 type="text" 
                 className="search-input" 
                 value={query} 
                 onChange={(event) => setQuery(event.target.value)} 
                 placeholder="Search Movies, TV Shows, and more..."/>
-                <button type='submit'>Search</button>
+                <button className="btn btn-primary" type='button'>Search</button>
                 </form>
                 
                 <div className="card-list">
