@@ -3,6 +3,7 @@ import './App.css';
 import './Home.css';
 import {Form} from 'react-bootstrap';
 import Movie from './MovieCard';
+import TV from './TVCard';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -65,9 +66,18 @@ function Search () {
                 </form>
                 
                 <div className={`card-list ${query ? 'card-list-margin' : ''}`}>
-                    {result.filter(movie => movie.poster_path).map(movie => (
+                    {result.filter(item => item.poster_path && (item.media_type === 'movie' || item.media_type === 'tv'))
+                    .map((item) => {
+                    if (item.media_type === 'movie') {
+                        return <Movie key={item.id} {...item} />;
+                    } else if (item.media_type === 'tv') {
+                        return <TV key={item.id} {...item} />;
+                    }
+                    
+                    })};
+                    {/* {result.filter(movie => movie.poster_path).map(movie => (
                         <Movie key={movie.id} {...movie}/>
-                    ))};
+                    ))}; */}
                 </div>
             </div>
 
