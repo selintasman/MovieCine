@@ -22,16 +22,16 @@ body {
 
 .card-list {
     width: 100%;
-    margin: 1cm auto;
-    
     display: flex;
     flex-wrap: wrap;
     margin-left: .5px;
     
     gap: 20px;
     justify-content: center;
+}
 
-   
+.card-list-margin {
+    margin: 1cm auto;
 }
 
 .grid {
