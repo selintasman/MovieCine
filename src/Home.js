@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
-import './Home.css';
-
 import MovieCard from './MovieCard';
-
 import Search from './Search';
 import TV from './TVCard';
+import './App.css';
+import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
@@ -49,30 +47,16 @@ const Home = (sessionId) => {
       let data = await response.json();
       console.log(data);
       setPopularTVShows(data.results);
-    
     };
 
     fetchPopularMovies();
     fetchPopularTVShows();
 
-
   }, []);
-
-  
-  console.log('SESSIONNNNN', sessionId);
 
   return (
    
     <div>
-      
-
-
-
-
-
-
-
-      <h1>Welcome to Home Page</h1>
       <div className='search-area'>
         <Search/>
       </div>
@@ -98,21 +82,6 @@ const Home = (sessionId) => {
         {popularTVShows.map((show) => <TV key={show.id} {...show}/>)};
         </div>
       </div>
-
-    
-
-
-      
-
-
-
-
-
-
-
-
-
-
     </div>
   );
 };

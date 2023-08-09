@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,13 +11,9 @@ function Login({ onLogin, setSessionId }) {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     
-    
-  
-  
     const handleLogin = async (e) => {
       e.preventDefault();
   
-      
       const API_URL = `https://api.themoviedb.org/3/authentication/token/new?api_key=${API_KEY}`;
       
       let response = await fetch(API_URL);
@@ -36,20 +31,15 @@ function Login({ onLogin, setSessionId }) {
         }
       });
   
-      /* if (finalResponse.ok) {
-        console.log('User logged in successfully!');
-        onLogin();
-        navigate('/home');
-      } */
-
+  
       if (finalResponse.ok) {
-        // Step 3: Validate login credentials and get the validated request token
+        // Validate login credentials and get the validated request token
         console.log('User logged in successfully!');
         // Parse the response to get the validated request token
         let validatedData = await finalResponse.json();
         let validatedRequestToken = validatedData.request_token;
     
-        // Step 4: Create a new session using the validated request token
+        // Create a new session using the validated request token
         const sessionURL = `https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}`;
         const sessionResponse = await fetch(sessionURL, {
           method: 'POST',
@@ -71,7 +61,6 @@ function Login({ onLogin, setSessionId }) {
           console.log(sessionId);
           
         } 
-    
         onLogin();
         navigate('/home');
       } 
@@ -124,7 +113,6 @@ function Login({ onLogin, setSessionId }) {
       </div>
     </div>
 
-       
     );
   }
 

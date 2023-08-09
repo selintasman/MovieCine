@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import TV from './TVCard';
 import './App.css';
 import './Home.css';
-
-import TV from './TVCard';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
 
@@ -32,13 +31,8 @@ function PopularTV () {
 
         popular();
     
-        
-    
     
       }, []);
-
-
-
 
 
     return (
@@ -46,20 +40,11 @@ function PopularTV () {
             <h2>
                 <b>Popular TV</b>
             </h2>
-
-                    
             <div className='tv-list'>
                 <div className='grid'>
                     {shows.map((show) => <TV key={show.id} {...show}/>)};
                 </div>
             </div>
-
-
-
-
-
-
-
         </div>
     );
 }

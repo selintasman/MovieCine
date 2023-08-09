@@ -1,14 +1,10 @@
-/* .app, body, html {
-  text-align: center;
-  background-color: rgb(190, 143, 149); 
-  background-color: black;
-  color:aliceblue;
-}  */
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 .Home {
   background: white !important;
   color: black;
 }
+
 .form-group {
 	display: flex;
 	flex-direction: row;
@@ -23,8 +19,6 @@
 	justify-content: center;
 	margin-bottom: 10px;
 }
-
- @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 * {
 	box-sizing: border-box;

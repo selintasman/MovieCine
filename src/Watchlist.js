@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import MovieCard from './MovieCard';
 import './App.css';
 import './Home.css';
-
-import MovieCard from './MovieCard';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
 
@@ -34,19 +33,14 @@ function Watchlist ({account_id, sessionId}) {
          
           getWatchlist();
          
-      
-      
         }, [account_id]);
-
 
 
     return (
         <div>
             <h2>
                 <b>My Watchlist</b>
-            </h2>
-
-                    
+            </h2>    
             <div className='movie-list'>
                 <div className='grid'>
                 {watchlist.map((movie) => <MovieCard 
@@ -58,19 +52,9 @@ function Watchlist ({account_id, sessionId}) {
                 release_date={movie.release_date}
                 overview={movie.overview}
                 sessionId={sessionId}
-                
-                
-
                 /> )};
                 </div>
             </div>
-
-
-
-
-
-
-
         </div>
     );
 }

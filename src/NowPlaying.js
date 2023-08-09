@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import MovieCard from './MovieCard';
 import './App.css';
 import './Home.css';
-
-import MovieCard from './MovieCard';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
 
@@ -33,21 +32,14 @@ function NowPlayingMovies () {
         nowPlaying();
     
         
-    
-    
       }, []);
-
-
-
 
 
     return (
         <div>
             <h2>
                 <b>Movies that are currently in theatres</b>
-            </h2>
-
-                    
+            </h2> 
             <div className='movie-list'>
                 <div className='grid'>
                 {movies.map((movie) => <MovieCard 
@@ -61,13 +53,6 @@ function NowPlayingMovies () {
                 /> )};
                 </div>
             </div>
-
-
-
-
-
-
-
         </div>
     );
 }
