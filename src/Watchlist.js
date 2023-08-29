@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
+import TV from './TVCard';
 import './App.css';
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
+const API_KEY = process.env.REACT_APP_API_KEY;
+const ACCESS_TOKEN = process.env.REACT_APP_READ_ACCESS_TOKEN;
 
 function Watchlist ({account_id, sessionId}) {
 
     const [watchlist, setWatchlist] = useState([]);
+    const [watchlistTV, setWatchlistTV] = useState([]);
+    
     
     useEffect(() => {
 
@@ -20,7 +24,7 @@ function Watchlist ({account_id, sessionId}) {
               method: 'GET',
               headers: {
                 accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMWE1YTllYjI1YzdkNzY4OGUyNTgzMTBkYTgwZWI1NSIsInN1YiI6IjY0YjUzYTdhMTIxOTdlMDBjNWY0OWUyOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.e8u4ycMy9_Q3PXP5QWXxeFsOY3lZBASrxoqWueIXjuY'
+                Authorization: `Bearer ${ACCESS_TOKEN}`
               }
           });
           
@@ -29,9 +33,28 @@ function Watchlist ({account_id, sessionId}) {
             setWatchlist(data.results)
             
           };
+
+
+          const getWatchlistTV = async () => {
+            const API_URL = `https://api.themoviedb.org/3/account/${account_id}/watchlist/tv?api_key=${API_KEY}`;
+            
+            let response = await fetch(API_URL, {
+              method: 'GET',
+              headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${ACCESS_TOKEN}`
+              }
+          });
+          
+            let data = await response.json();
+            console.log(data);
+            setWatchlistTV(data.results)
+            
+          };
     
          
           getWatchlist();
+          getWatchlistTV();
          
         }, [account_id]);
 
@@ -53,6 +76,11 @@ function Watchlist ({account_id, sessionId}) {
                 overview={movie.overview}
                 sessionId={sessionId}
                 /> )};
+                </div>
+            </div>
+            <div className='tv-list'>
+                <div className='grid'>
+                    {watchlistTV.map((show) => <TV key={show.id} {...show}/>)};
                 </div>
             </div>
         </div>

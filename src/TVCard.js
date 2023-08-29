@@ -5,13 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const API_IMG = "https://image.tmdb.org/t/p/w300/";
-const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
+const API_KEY = process.env.REACT_APP_API_KEY;
+const ACCESS_TOKEN = process.env.REACT_APP_READ_ACCESS_TOKEN;
 
 
 function TV ({name, poster_path, vote_average, release_date, overview, id}) {
 
     const [show, setShow] = useState(false);
     const [trailers, setTrailers] = useState([]);
+    const [isAddedToWatchlist, setIsAddedToWatchlist] = useState(false);
     
     const handlePreview = () => {
       setShow(true);
@@ -31,7 +33,7 @@ function TV ({name, poster_path, vote_average, release_date, overview, id}) {
             method: 'GET',
             headers: {
               accept: 'application/json',
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMWE1YTllYjI1YzdkNzY4OGUyNTgzMTBkYTgwZWI1NSIsInN1YiI6IjY0YjUzYTdhMTIxOTdlMDBjNWY0OWUyOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.e8u4ycMy9_Q3PXP5QWXxeFsOY3lZBASrxoqWueIXjuY'
+              Authorization: `Bearer ${ACCESS_TOKEN}`
             }
         });
         
@@ -51,6 +53,28 @@ function TV ({name, poster_path, vote_average, release_date, overview, id}) {
     
     
       }, [id]);
+
+
+      const handleAddToWatchlist = async (e) => {
+      
+        const options = {
+          method: 'POST',
+          headers: {
+            accept: 'application/json',
+            'content-type': 'application/json',
+            Authorization: `Bearer ${ACCESS_TOKEN}`
+          },
+          body: JSON.stringify({media_type: 'tv', media_id: id, watchlist: true})
+        };
+        
+        fetch('https://api.themoviedb.org/3/account/20161831/watchlist', options)
+          .then(response => response.json())
+          .then(response => console.log(response))
+          .catch(err => console.error(err));
+          setIsAddedToWatchlist(true);
+        
+  
+      };
 
 
     return (
@@ -73,6 +97,14 @@ function TV ({name, poster_path, vote_average, release_date, overview, id}) {
                     <br></br>
                     <h6>Overview</h6>
                     <p>{overview}</p>
+                    <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={handleAddToWatchlist}
+                    disabled={isAddedToWatchlist}
+                  >
+                    {isAddedToWatchlist ? 'Added to Watchlist' : 'Add to Watchlist'}
+                  </button>
 
 
                     <div className="movie-trailers">

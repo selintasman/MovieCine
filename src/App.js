@@ -12,8 +12,12 @@ import OnTheAir from './OnTheAir';
 import TopRatedTV from './TopRatedTV';
 import PopularTV from './PopularTV';
 import Watchlist from './Watchlist';
+import Genre from './Genres';
+import TVGenres from './TVGenres';
+import MovieProviders from './MovieProviders';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   
@@ -39,6 +43,10 @@ function App() {
           <Route path="/tv/top-rated" element={<TopRatedTV/>} />
           <Route path="/tv/popular" element={<PopularTV/>} />
           <Route path="/watchlist" element={<Watchlist/>} />
+          <Route path="/by-genre-movie" element={<Genre/>} />
+          <Route path="/by-genre-tv" element={<TVGenres/>} />
+          <Route path="/by-provider-movie" element={<MovieProviders/>} />
+
         </Routes>
       </BrowserRouter>
           

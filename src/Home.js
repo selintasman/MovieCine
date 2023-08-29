@@ -6,7 +6,8 @@ import './App.css';
 import './Home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
+const API_KEY = process.env.REACT_APP_API_KEY;
+const ACCESS_TOKEN = process.env.REACT_APP_READ_ACCESS_TOKEN;
   
 const Home = (sessionId) => {
 
@@ -23,7 +24,7 @@ const Home = (sessionId) => {
           method: 'GET',
           headers: {
               accept: 'application/json',
-              Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMWE1YTllYjI1YzdkNzY4OGUyNTgzMTBkYTgwZWI1NSIsInN1YiI6IjY0YjUzYTdhMTIxOTdlMDBjNWY0OWUyOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.e8u4ycMy9_Q3PXP5QWXxeFsOY3lZBASrxoqWueIXjuY'
+              Authorization: `Bearer ${ACCESS_TOKEN}`
           }
       });
     
@@ -40,7 +41,7 @@ const Home = (sessionId) => {
         method: 'GET',
         headers: {
           accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMWE1YTllYjI1YzdkNzY4OGUyNTgzMTBkYTgwZWI1NSIsInN1YiI6IjY0YjUzYTdhMTIxOTdlMDBjNWY0OWUyOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.e8u4ycMy9_Q3PXP5QWXxeFsOY3lZBASrxoqWueIXjuY'
+          Authorization: `Bearer ${ACCESS_TOKEN}`
         }
     });
     

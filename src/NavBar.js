@@ -49,6 +49,18 @@ function NavBar () {
                 <li className="nav-item">
                 <Link className="nav-link" to="/watchlist">My Watchlist</Link>
                 </li> 
+
+        
+                <li className="nav-item dropdown">
+                <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter
+                </Link>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="by-genre-movie">Movies - By Genre</Link>
+                <Link className="dropdown-item" to="by-genre-tv">TV - By Genre</Link>
+                <Link className="dropdown-item" to="by-provider-movie">Movies - By Providers</Link>
+                </div>
+                </li>
                 
                 
             </ul>

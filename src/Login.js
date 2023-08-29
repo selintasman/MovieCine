@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const API_KEY = '21a5a9eb25c7d7688e258310da80eb55';
+const API_KEY = process.env.REACT_APP_API_KEY;
+const ACCESS_TOKEN = process.env.REACT_APP_READ_ACCESS_TOKEN;
 
-function Login({ onLogin, setSessionId }) {
+function Login({ onLogin }) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -27,40 +28,13 @@ function Login({ onLogin, setSessionId }) {
         headers: {
           accept: 'application/json',
           'content-type': 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMWE1YTllYjI1YzdkNzY4OGUyNTgzMTBkYTgwZWI1NSIsInN1YiI6IjY0YjUzYTdhMTIxOTdlMDBjNWY0OWUyOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.e8u4ycMy9_Q3PXP5QWXxeFsOY3lZBASrxoqWueIXjuY'
+          Authorization: `Bearer ${ACCESS_TOKEN}`
         }
       });
   
   
       if (finalResponse.ok) {
-        // Validate login credentials and get the validated request token
         console.log('User logged in successfully!');
-        // Parse the response to get the validated request token
-        let validatedData = await finalResponse.json();
-        let validatedRequestToken = validatedData.request_token;
-    
-        // Create a new session using the validated request token
-        const sessionURL = `https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}`;
-        const sessionResponse = await fetch(sessionURL, {
-          method: 'POST',
-          body: JSON.stringify({ request_token: validatedRequestToken }),
-          headers: {
-            accept: 'application/json',
-            'content-type': 'application/json',
-          },
-        });
-
-        if (sessionResponse.ok) {
-          // Parse the response to get the session ID
-          const sessionData = await sessionResponse.json();
-          const sessionId = sessionData.session_id;
-          
-    
-          console.log('Session nnnID:', sessionId);
-          setSessionId(sessionId);
-          console.log(sessionId);
-          
-        } 
         onLogin();
         navigate('/home');
       } 
@@ -81,7 +55,7 @@ function Login({ onLogin, setSessionId }) {
           </div>
                 <form className='login'>  
                     <div className='login__field'>
-                        <i class="login__icon fas fa-lock"></i>
+                        <i class="login__icon fas fa-user"></i>
                         <input
                         className="login__input"
                         type="text"
@@ -92,7 +66,7 @@ function Login({ onLogin, setSessionId }) {
                         />
                     </div>
                     <div className='login__field'>
-                        <i class="login__icon fas fa-user"></i>
+                        <i class="login__icon fas fa-lock"></i>
                         <input
                         className='login__input'
                         type="password"
